@@ -18,13 +18,16 @@ class Deck:
 
 
 class Game:
-    players = []
-    dealer = {
-        'name': 'Jesus',
-        'hand': [],
-        'handsum': 0
-    }
-    players.append(dealer)
+    def __init__(self):
+        self.players = []
+        dealer = {
+            'name': 'Jesus',
+            'hand': [],
+            'handsum': 0
+        }
+        self.players.append(dealer)
+        self.deck = Deck()
+        self.getplayers()
 
     def getplayers(self):  # push all the players into their list.
         while len(self.players) < 7:
@@ -41,13 +44,23 @@ class Game:
             elif join == 'n':
                 break
 
-    def pcard(self):
-        print("┌───────┐")
-        print("| {:<2}    |".format(self.rank))
-        print("|       |")
-        print("|   {}   |".format(self.suit))
-        print("|       |")
-        print("|    {:>2} |".format(self.rank))
-        print("└───────┘")
+    def deal(self):
+        self.deck = Deck()
+        for player in self.players:
+            player['hand'].append(self.deck.draw())
+            player['hand'].append(self.deck.draw())
 
-deck = Deck()
+    #TODO:Add handvalue function
+
+
+
+
+
+# def pcard(self):
+#    print("┌───────┐")
+#    print("| {:<2}    |".format(self.rank))
+#    print("|       |")
+#    print("|   {}   |".format(self.suit))
+#    print("|       |")
+#    print("|    {:>2} |".format(self.rank))
+#    print("└───────┘")
