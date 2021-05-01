@@ -30,6 +30,7 @@ class Game:
         self.getplayers()
         self.losers = []
         self.wieners = []
+        self.round = 1
 
     def getplayers(self):  # push all the players into their list.
         join = 'y'
@@ -96,7 +97,7 @@ class Game:
             for player in self.players[1:]:
                 if player['name'] not in self.losers:
                     self.wieners.append(player['name'])
-            print(f"------------GAME OVER-------------")
+            print(f"------------ROUND {self.round} OVER-------------")
             print(f"The Lord's Hand is:\n{self.players[0]['hand']}")
             print(f"Jesus Has LOST! The Winners ARE:\n{self.wieners}\n and the losers are:\n{self.losers}")
         else:
@@ -108,16 +109,28 @@ class Game:
                         continue
                     else:
                         self.losers.append(player['name'])
-            print(f"------------GAME OVER-------------")
+            print(f"------------ROUND {self.round} OVER-------------")
             print(f"The Lord's Hand is:\n{self.players[0]['hand']}")
             print(f"The Winners ARE:\n{self.wieners}\n and the losers are:\n{self.losers}")
 
+    def newround(self):
+        for player in self.players:
+            player['hand'].clear()
+            player['handsum'] = 0
+        self.wieners.clear()
+        self.losers.clear()
+
 
 game = Game()
-game.deal()
-game.playersturn()
-game.dealerturn()
-game.conc()
+g = 'y'
+while g == 'y':
+    game.deal()
+    game.playersturn()
+    game.dealerturn()
+    game.conc()
+    g = input(f'Would you like another round? y/n')
+    game.newround()
+
 # def pcard(self):
 #    print("┌───────┐")
 #    print("| {:<2}    |".format(self.rank))
