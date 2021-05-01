@@ -113,22 +113,11 @@ class Game:
             print(f"The Winners ARE:\n{self.wieners}\n and the losers are:\n{self.losers}")
 
 
-
-
-
-
-
-
-
-
 game = Game()
 game.deal()
 game.playersturn()
 game.dealerturn()
 game.conc()
-
-
-
 # def pcard(self):
 #    print("┌───────┐")
 #    print("| {:<2}    |".format(self.rank))
